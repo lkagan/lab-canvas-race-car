@@ -1,16 +1,11 @@
 class Car {
     constructor(canvas, ctx) {
         document.addEventListener("keydown", this.move);
-
-        this.x = 0;
-        this.y = 0;
+        this.x = this.y = this.width = this.height = 0;
         this.step = 10; // Distance in pixels to move the car each step.
         this.canvas = canvas;
         this.ctx = ctx;
-
         this.initImage();
-        this.width = this.image.width / 4;
-        this.height = this.image.height / 4;
     }
 
     /**
@@ -22,7 +17,8 @@ class Car {
         this.image.addEventListener("load", () => {
             this.x = this.canvas.width / 2 - this.image.width / 4 / 2;
             this.y = this.canvas.height - 100;
-            this.draw();
+            this.width = this.image.width / 4;
+            this.height = this.image.height / 4;
         });
     }
 
@@ -49,7 +45,7 @@ class Car {
             return;
         }
 
-        this.x += this.step;
+        this.x -= this.step;
         this.draw();
     }
 
